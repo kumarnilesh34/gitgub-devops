@@ -37,10 +37,9 @@ pipeline{
         }
         stage("Deploy"){
             steps{
-                echo "This is Deploy"
-                sh "docker stop nginxcicd"
-                sh "docker rm nginxcicd"
-                sh "docker run -itd --name nginxcicd -p 80:80 nilesh0706/nginx:latest"
+                script{
+                    dockerContainerDeploy("nginxcicd", "nilesh0706", "nginx", "latest", "80:80")
+                }
             }  
         }
     }
