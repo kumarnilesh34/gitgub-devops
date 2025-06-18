@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome to My World</title>
+  <title>Nilesh's World</title>
   <style>
     * {
       margin: 0;
@@ -15,7 +15,6 @@
     body {
       background: #f5f7fa;
       color: #333;
-      line-height: 1.6;
     }
 
     header {
@@ -23,10 +22,6 @@
       color: #fff;
       padding: 1.5rem 2rem;
       text-align: center;
-    }
-
-    header h1 {
-      margin-bottom: 0.2rem;
     }
 
     .container {
@@ -44,22 +39,20 @@
     .card {
       background: #ffffff;
       padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
       transition: transform 0.3s ease;
+      text-align: center;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: scale(1.05);
     }
 
     .card h3 {
-      margin-bottom: 0.5rem;
       color: #0077cc;
-    }
-
-    .card p {
-      color: #555;
+      margin-bottom: 0.5rem;
     }
 
     footer {
@@ -69,35 +62,149 @@
       margin-top: 2rem;
       font-size: 0.9rem;
     }
+
+    /* MODAL STYLES */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+      animation: fadeIn 0.4s;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      animation: slideDown 0.4s;
+      position: relative;
+    }
+
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #333;
+    }
+
+    @keyframes slideDown {
+      from {transform: translateY(-50px); opacity: 0;}
+      to {transform: translateY(0); opacity: 1;}
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Welcome to My Awesome Page</h1>
-    <p>Made with ❤️ by Nilesh Mandal</p>
+    <h1>Welcome to Nilesh's World</h1>
+    <p>Click a card to explore more ✨</p>
   </header>
 
   <div class="container">
     <section class="card-grid">
-      <div class="card">
+      <div class="card" onclick="openModal('aboutModal')">
         <h3>About Me</h3>
-        <p>I am a passionate devOps engineer who loves coding, automation, and building cool stuff.</p>
+        <p>Know who I am</p>
       </div>
-      <div class="card">
+      <div class="card" onclick="openModal('projectsModal')">
         <h3>Projects</h3>
-        <p>Check out my latest work including Terraform, Jenkins pipelines, and Docker setups.</p>
+        <p>Check out my work</p>
       </div>
-      <div class="card">
-        <h3>Contact</h3>
-        <p>Let's connect on <a href="#">LinkedIn</a> or drop me an email at you@example.com.</p>
+      <div class="card" onclick="openModal('contactModal')">
+        <h3>Contact Me</h3>
+        <p>Let's connect</p>
       </div>
     </section>
   </div>
 
   <footer>
-    &copy; 2025 Nilesh Mandal. All rights reserved.
+    &copy; 2025 Nilesh Kumar. All rights reserved.
   </footer>
+
+  <!-- MODALS -->
+
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+      <h2>About Me</h2>
+      <p>Hi, I'm Nilesh — a DevOps engineer who loves automating infrastructure with tools like Terraform, Docker, Jenkins, and more. I enjoy creating systems that are robust, scalable, and easy to manage.</p>
+    </div>
+  </div>
+
+  <div id="projectsModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('projectsModal')">&times;</span>
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>Infra-as-Code:</strong> Automated GCP infrastructure using Terraform.</li>
+        <li><strong>CI/CD Pipelines:</strong> Jenkins pipelines with Docker & GitHub integration.</li>
+        <li><strong>Monitoring:</strong> Set up Grafana dashboards for agentless VM monitoring.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('contactModal')">&times;</span>
+      <h2>Contact Me</h2>
+      <p>You can reach me at:</p>
+      <ul>
+        <li>Email: <a href="mailto:you@example.com">you@example.com</a></li>
+        <li>LinkedIn: <a href="#">linkedin.com/in/nilesh</a></li>
+        <li>GitHub: <a href="#">github.com/nilesh0706</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- JS FOR MODALS -->
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    // Close modal if user clicks outside the content
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
