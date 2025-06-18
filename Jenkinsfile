@@ -40,7 +40,7 @@ pipeline{
                 echo "This is Deploy"
                 sh "docker stop nginxcicd"
                 sh "docker rm nginxcicd"
-                sh "docker run -itd --name nginxcicd -p 80:80 nginx:latest"
+                sh "docker run -itd --name nginxcicd -p 80:80 nilesh0706/nginx:latest"
             }  
         }
     }
