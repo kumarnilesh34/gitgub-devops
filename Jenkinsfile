@@ -12,7 +12,6 @@ pipeline{
         stage("Code"){
             steps{
                 script{
-                whoami
                 clone("https://github.com/kumarnilesh34/gitgub-devops.git", "master")
                 }
             }  
